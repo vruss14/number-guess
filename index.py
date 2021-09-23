@@ -48,7 +48,11 @@ def comp_guess(numbers):
     user_feedback = input(f'Okay I\'ve got it! Is your number {cpu_guess}? Just say yes or no.').lower().lstrip().rstrip()
 
     if(user_feedback == 'yes'):
-        print('Haha!!!! I win!!!')
+        play_again = input('YESSS!! Victory is so sweet! At least from what I\'ve heard... I\'m a computer so I don\'t actually taste things. But anyway, that was a lot of fun! Do you want to play again? Just say yes or no.')
+        if(play_again == 'yes'):
+            ask_guess()
+        else:
+            print('No worries! That was a blast. Thanks for hanging out with me.')
     else:
         numbers.remove(cpu_guess)
         comp_guess(numbers)
