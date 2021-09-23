@@ -22,6 +22,7 @@ def choose_number():
 def check_guess(user, cpu):
     if(int(user) == int(cpu)):
         print('You got it on your FIRST try?!? You must be a mind reader! Way to go!')
+        run_user_turn()
     else:
         subsequent_guess(cpu)
 
@@ -29,8 +30,28 @@ def subsequent_guess(cpu):
     extra_guess = input('Haha! That\'s not it! Guess again!').lstrip().rstrip()
     if(int(extra_guess) == int(cpu)):
         print(f'Aw man! You got it! My number was {cpu}!')
+        run_user_turn()
     else:
         subsequent_guess(cpu)
+
+def run_user_turn():
+    your_turn = input('All right, your turn! Think of a number between 1–10 and tell me when you\'ve got it. Just say "ready" when you have a number.').lower().lstrip().rstrip()
+    number_options = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    if(your_turn == 'ready'):
+        comp_guess(number_options)
+    else:
+        print('Sorry, I didn\'t understand you.')
+
+def comp_guess(numbers):
+    print(numbers)
+    cpu_guess = random.choice(numbers)
+    user_feedback = input(f'Okay I\'ve got it! Is your number {cpu_guess}? Just say yes or no.').lower().lstrip().rstrip()
+
+    if(user_feedback == 'yes'):
+        print('Haha!!!! I win!!!')
+    else:
+        numbers.remove(cpu_guess)
+        comp_guess(numbers)
 
 print_intro()
     
